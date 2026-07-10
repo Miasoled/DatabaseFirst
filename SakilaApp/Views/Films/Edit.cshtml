@@ -1,0 +1,89 @@
+@model SakilaApp.Models.Film
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Film</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FilmId" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseYear" class="control-label"></label>
+                <input asp-for="ReleaseYear" class="form-control" />
+                <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LanguageId" class="control-label"></label>
+                <select asp-for="LanguageId" class="form-control" asp-items="ViewBag.LanguageId"></select>
+                <span asp-validation-for="LanguageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OriginalLanguageId" class="control-label"></label>
+                <select asp-for="OriginalLanguageId" class="form-control" asp-items="ViewBag.OriginalLanguageId"></select>
+                <span asp-validation-for="OriginalLanguageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RentalDuration" class="control-label"></label>
+                <input asp-for="RentalDuration" class="form-control" />
+                <span asp-validation-for="RentalDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RentalRate" class="control-label"></label>
+                <input asp-for="RentalRate" class="form-control" />
+                <span asp-validation-for="RentalRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Length" class="control-label"></label>
+                <input asp-for="Length" class="form-control" />
+                <span asp-validation-for="Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReplacementCost" class="control-label"></label>
+                <input asp-for="ReplacementCost" class="form-control" />
+                <span asp-validation-for="ReplacementCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastUpdate" class="control-label"></label>
+                <input asp-for="LastUpdate" class="form-control" />
+                <span asp-validation-for="LastUpdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecialFeatures" class="control-label"></label>
+                <input asp-for="SpecialFeatures" class="form-control" />
+                <span asp-validation-for="SpecialFeatures" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fulltext" class="control-label"></label>
+                <input asp-for="Fulltext" class="form-control" />
+                <span asp-validation-for="Fulltext" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

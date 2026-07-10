@@ -1,0 +1,165 @@
+@model IEnumerable<SakilaApp.Models.Film>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index" method="get" class="mb-3">
+    <div class="row g-2">
+        <div class="col-md-5">
+            <input type="text" name="buscar" value="@ViewBag.Buscar"
+                   class="form-control"
+                   placeholder="Buscar por título" />
+        </div>
+
+        <div class="col-md-3">
+            <input type="number" name="duracionMinima" value="@ViewBag.DuracionMinima"
+                   class="form-control"
+                   placeholder="Duración mínima" />
+        </div>
+
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+            <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+        </div>
+    </div>
+</form>
+<nav class="mt-3">
+    <ul class="pagination">
+
+        @if (ViewBag.PaginaActual > 1)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-action="Index"
+                   asp-route-buscar="@ViewBag.Buscar"
+                   asp-route-duracionMinima="@ViewBag.DuracionMinima"
+                   asp-route-pagina="@(ViewBag.PaginaActual - 1)">
+                    Anterior
+                </a>
+            </li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+        {
+            <li class="page-item @(i == ViewBag.PaginaActual ? "active" : "")">
+                <a class="page-link"
+                   asp-action="Index"
+                   asp-route-buscar="@ViewBag.Buscar"
+                   asp-route-duracionMinima="@ViewBag.DuracionMinima"
+                   asp-route-pagina="@i">
+                    @i
+                </a>
+            </li>
+        }
+
+        @if (ViewBag.PaginaActual < ViewBag.TotalPaginas)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-action="Index"
+                   asp-route-buscar="@ViewBag.Buscar"
+                   asp-route-duracionMinima="@ViewBag.DuracionMinima"
+                   asp-route-pagina="@(ViewBag.PaginaActual + 1)">
+                    Siguiente
+                </a>
+            </li>
+        }
+
+    </ul>
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentalDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentalRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReplacementCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialFeatures)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fulltext)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginalLanguage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentalDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentalRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReplacementCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialFeatures)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fulltext)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalLanguage.Name)
+            </td> 
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FilmId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FilmId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FilmId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
